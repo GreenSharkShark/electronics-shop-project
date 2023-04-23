@@ -10,3 +10,12 @@ item2.apply_discount()
 def test_item():
     assert item1.calculate_total_price() == 200000
     assert item2.price == 16000.0
+
+    item2.name = 'СуперСмартфон'
+    assert item2.name == 'СуперСмартфон'
+
+
+
+    assert Item.string_to_number('5') == 5
+    assert Item.string_to_number('5.0') == 5
+    assert Item.string_to_number('5.5') == 5
