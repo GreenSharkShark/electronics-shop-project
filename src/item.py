@@ -15,7 +15,7 @@ class Item:
         но у меня она отображалась некорректно, по этому названия товаров в файле заменил на свои.
         :return: Экземпляры класса Item
         """
-        with open('../src/items.csv') as csvfile:
+        with open('src/items.csv') as csvfile:
             content = csv.DictReader(csvfile)
             Item.all.clear()
             for i in content:
@@ -66,7 +66,7 @@ class Item:
         :return:
         """
         if len(name) > 10:
-            print('Длинна наименования товара больше 10 символов')
+            raise Exception('Длинна названия больше 10 символов.')
         self.__name = name
 
     def calculate_total_price(self) -> float:
