@@ -8,7 +8,6 @@ class Item:
     pay_rate = 1.0
     all = []
 
-
     def __init__(self, name: str, price: float, quantity: int) -> None:
         """
         Создание экземпляра класса item.
@@ -21,14 +20,16 @@ class Item:
         self.price = price
         self.quantity = quantity
 
-
     def __repr__(self):
         return f"{self.__class__.__name__}{self.__name, self.price, self.quantity}"
-
 
     def __str__(self):
         return self.__name
 
+    def __add__(self, other):
+        # if not issubclass(Phone, Item):
+        #     return 'Можно сложить только объекты класса Item и Phone.'
+        return other.quantity + self.quantity
 
     @classmethod
     def instantiate_from_csv(cls):
@@ -43,7 +44,6 @@ class Item:
             for i in content:
                 Item.all.append(cls(str(i['name']), float(i['price']), int(i['quantity'])))
 
-
     @staticmethod
     def string_to_number(string):
         """
@@ -56,7 +56,6 @@ class Item:
         """
         return int(string[0])
 
-
     @property
     def name(self):
         """
@@ -64,7 +63,6 @@ class Item:
         :return:
         """
         return self.__name
-
 
     @name.setter
     def name(self, name):
@@ -77,7 +75,6 @@ class Item:
             raise Exception('Длинна названия больше 10 символов.')
         self.__name = name
 
-
     def calculate_total_price(self) -> float:
         """
         Рассчитывает общую стоимость конкретного товара в магазине.
@@ -85,7 +82,6 @@ class Item:
         :return: Общая стоимость товара.
         """
         return self.price * self.quantity
-
 
     def apply_discount(self) -> None:
         """
