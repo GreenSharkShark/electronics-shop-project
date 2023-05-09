@@ -18,8 +18,8 @@ def string_to_number():
 
 
 def instantinate_from_csv():
-      Item.instantiate_from_csv()
-      assert Item.all[0].name == "Phone"
+    Item.instantiate_from_csv()
+    assert Item.all[0].name == "Phone"
 
 
 def test_repr():
@@ -28,3 +28,8 @@ def test_repr():
 
 def test_str():
     assert str(item1) == 'Смартфон'
+
+
+test_str()
+calculate_total_price()
+string_to_number()
