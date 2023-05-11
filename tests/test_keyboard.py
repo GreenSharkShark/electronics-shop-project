@@ -1,20 +1,14 @@
 from src.keyboard import Keyboard
 
-kb = Keyboard('Dark Project KD87A', 9600, 5)
-
 
 def test_str():
+    kb = Keyboard('Dark Project KD87A', 9600, 5)
     assert str(kb) == "Dark Project KD87A"
 
 
-test_str()
-
-
 def test_language():
+    kb = Keyboard('Dark Project KD87A', 9600, 5)
     assert str(kb.language) == "EN"
-
-
-test_language()
 
 
 def test_language_change():
@@ -23,4 +17,7 @@ def test_language_change():
     assert str(key.language) == "RU"
 
 
-test_language_change()
+if __name__ == "__main__":
+    test_language()
+    test_str()
+    test_language_change()
