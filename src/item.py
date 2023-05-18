@@ -1,4 +1,5 @@
 import csv
+from src.instantiate_csv_error import InstantiateCSVError
 
 
 class Item:
@@ -39,11 +40,17 @@ class Item:
         но у меня она отображалась некорректно, по этому названия товаров в файле заменил на свои.
         :return: Экземпляры класса Item
         """
-        with open('src/items.csv') as csvfile:
-            content = csv.DictReader(csvfile)
-            Item.all.clear()
-            for i in content:
-                Item.all.append(cls(str(i['name']), float(i['price']), int(i['quantity'])))
+        try:
+            with open('../src/items.csv') as csvfile:
+                content = csv.DictReader(csvfile)
+                if {'name', 'price', 'quantity'}.issubset(content.fieldnames):
+                    Item.all.clear()
+                    for i in content:
+                        Item.all.append(cls(str(i['name']), float(i['price']), int(i['quantity'])))
+                else:
+                    raise InstantiateCSVError('Файл items.csv поврежден')
+        except FileNotFoundError:
+            raise FileNotFoundError('Отсутствует файл item.csv')
 
     @staticmethod
     def string_to_number(string):
